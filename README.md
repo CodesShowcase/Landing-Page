@@ -1,5 +1,10 @@
 # Landing Page Project
 
+## Foreword
+
+This whole project was really ridiculous, since sometimes the use of additional libraries like jQuery and Bootstrap is encouraged and other times it is not allowed, but never clearly stated.
+And also this time the reaction was very slow, it took a almost a week for the guys to just show a simple reaction after a few complaints...
+
 ## Table of Contents
 
 * [Documentation](#documentation)

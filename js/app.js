@@ -37,8 +37,8 @@ function nav_builder () {
    });
  
   navEntries = navEntries.replace(/<\/li><li>/g, '</li> | <li>');
-  $('#navbar__list').append($(navEntries));
-
+  //$('#navbar__list').append($(navEntries));
+  navbar.insertAdjacentHTML("afterbegin", navEntries);
 }
 
 // set visible section & nav entry active
@@ -56,30 +56,38 @@ function toggleActive() {
 
 }
 
+function hideNav() {
+  document.getElementById("navbar__list").style.display = "none";;
+}
+
 // does what it says, it autohides the navigation menu
 function autoHide() {
-  $('.navbar__menu').show();
-  $('.navbar__menu').delay(9000).fadeOut(1000);
+  //$('.navbar__menu').show();
+  document.getElementById("navbar__list").style.display = "block";
+  //$('.navbar__menu').delay(9000).fadeOut(1000);
+  window.setTimeout(hideNav, 9000); 
 }
 
 function topScroll() {
   window.scrollTo({top: 0, behavior: 'smooth'});
-
-  //Does also work, but smooth is not working...
-  //$('html,body').animate({scrollTop: $(window).scrollTop(0)}, 'slow');
-
 }
 
 function triggerBtn() {
   if (document.body.scrollTop > 80) {
-    $('.navbar').css('opacity', '1');
+    //$('#top-scroll-btn').css('opacity', '1');
+    document.getElementById("top-scroll-btn").style.opacity = "1.0";
   } else {
-    $('#top-scroll-btn').css('opacity', '0')
-};
+    //$('#top-scroll-btn').css('opacity', '0');
+    document.getElementById("top-scroll-btn").style.opacity = "0.0";
+  };
 }
 
-$(document).ready(() => { nav_builder(); autoHide(); });
+//$(document).ready(() => { nav_builder(); autoHide(); });
+document.addEventListener("DOMContentLoaded", () => { nav_builder(); autoHide(); });
 
 document.getElementById("top-scroll-btn").addEventListener("click", topScroll);
 
 document.addEventListener("scroll", () => { toggleActive(); autoHide(); triggerBtn(); });
+
+//This thing was a complete joke, sometimes it is encouraged to use jQuery and sometimes it is not,
+//but it is never clearly stated. Same with bootstrap, this is really ridiculous...

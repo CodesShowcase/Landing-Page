@@ -258,3 +258,11 @@ a:-webkit-any-link {
 .active-menuitem {
     background: rgba(220, 220, 220, 0.8) ;
 }
+
+.toggle-content {
+	display: none;
+}
+
+.is-hidden {
+	display: none;
+}
