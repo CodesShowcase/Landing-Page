@@ -25,6 +25,10 @@
 const navbar    = document.getElementById("navbar__list");
 const sections  = document.querySelectorAll("section");
 
+function scrollToSection(section){
+  section.scrollIntoView();
+}
+
 // build the nav
 function nav_builder () {
 
@@ -39,7 +43,21 @@ function nav_builder () {
   navEntries = navEntries.replace(/<\/li><li>/g, '</li> | <li>');
   //$('#navbar__list').append($(navEntries));
   navbar.insertAdjacentHTML("afterbegin", navEntries);
+
+
+  const anchors = navbar.querySelectorAll('a[href^="index.html#"]');
+  for (const anchor of anchors) {
+    anchor.onclick = function (e) {
+      e.preventDefault();
+      const hash = this.getAttribute("href");
+      const link = document.getElementById(hash.replace("index.html#",""));
+      link.scrollIntoView({ left: 0, block: 'start', behavior: 'smooth' });
+    }
+  }
+
 }
+
+
 
 // set visible section & nav entry active
 function toggleActive() {
