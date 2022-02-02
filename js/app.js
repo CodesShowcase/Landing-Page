@@ -57,7 +57,9 @@ function nav_builder () {
 
 }
 
-
+function calculateOffset(section) {
+  return Math.floor(section.getBoundingClientRect().top);
+}
 
 // set visible section & nav entry active
 function toggleActive() {
@@ -67,7 +69,9 @@ function toggleActive() {
     const rect = section.getBoundingClientRect();
     // This was the reference implementation from our instructors, but it does not work for small displays, since there is never all content in the viewport
     //const active = rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth);
-    const active = rect.top >= -50 && rect.top < 394;
+    // Also not ideal, since it is not dynamic
+    //const active = rect.top >= -50 && rect.top < 394;
+    const active = calculateOffset(section) < 150 && calculateOffset(section) >= -150;
     const menuitem = "menuitem-" + section.id;
     active ? section.classList.add('your-active-class') : section.classList.remove('your-active-class');
     active ? document.getElementById(menuitem).classList.add('active-menuitem') : document.getElementById(menuitem).classList.remove('active-menuitem');
