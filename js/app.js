@@ -65,11 +65,12 @@ function toggleActive() {
   sections.forEach(section => {
 
     const rect = section.getBoundingClientRect();
-    const active = rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+    // This was the reference implementation from our instructors, but it does not work for small displays, since there is never all content in the viewport
+    //const active = rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+    const active = rect.top >= -50 && rect.top < 394;
     const menuitem = "menuitem-" + section.id;
     active ? section.classList.add('your-active-class') : section.classList.remove('your-active-class');
     active ? document.getElementById(menuitem).classList.add('active-menuitem') : document.getElementById(menuitem).classList.remove('active-menuitem');
-  
   });
 
 }
